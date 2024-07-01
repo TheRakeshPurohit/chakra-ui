@@ -8,6 +8,7 @@ import {
   Heading,
   Image,
   Input,
+  Label,
   Span,
   Stack,
   Text,
@@ -27,7 +28,7 @@ export default {
 }
 
 export const Variants = () => {
-  const recipe = useSlotRecipe("Card")
+  const recipe = useSlotRecipe("card")
   return (
     <PlaygroundTable>
       <thead>
@@ -49,7 +50,7 @@ export const Variants = () => {
                   </Text>
                 </Card.Body>
                 <Card.Footer>
-                  <Button variant="solid" colorScheme="blue">
+                  <Button variant="solid" colorPalette="blue">
                     Button
                   </Button>
                 </Card.Footer>
@@ -63,7 +64,7 @@ export const Variants = () => {
 }
 
 export const Sizes = () => {
-  const recipe = useSlotRecipe("Card")
+  const recipe = useSlotRecipe("card")
   return (
     <PlaygroundTable>
       <thead>
@@ -97,7 +98,7 @@ export const Sizes = () => {
                         </Text>
                       </Card.Body>
                       <Card.Footer>
-                        <Button variant="solid" colorScheme="blue">
+                        <Button variant="solid" colorPalette="blue">
                           Button
                         </Button>
                       </Card.Footer>
@@ -137,10 +138,10 @@ export const WithImage = () => (
     </Card.Body>
     <Card.Footer>
       <HStack gap="2">
-        <Button variant="solid" colorScheme="blue">
+        <Button variant="solid" colorPalette="blue">
           Buy now
         </Button>
-        <Button variant="ghost" colorScheme="blue">
+        <Button variant="ghost" colorPalette="blue">
           Add to cart
         </Button>
       </HStack>
@@ -165,7 +166,7 @@ export const Horizontal = () => (
         </Text>
       </Card.Body>
       <Card.Footer>
-        <Button variant="solid" colorScheme="blue">
+        <Button variant="solid" colorPalette="blue">
           Buy Latte
         </Button>
       </Card.Footer>
@@ -176,25 +177,25 @@ export const Horizontal = () => (
 export const WithForm = () => (
   <Card.Root bg="bg.subtle">
     <Card.Header>
-      <Heading size="md" mb="3">
+      <Heading size="lg" mb="3">
         Sign up
       </Heading>
       <Text color="fg.muted">Fill in the form below to create an account</Text>
     </Card.Header>
     <Card.Body>
       <Stack maxW="sm" gap="4">
-        <Field.Root>
-          <Field.Label>First Name</Field.Label>
+        <Field>
+          <Label>First Name</Label>
           <Input />
-        </Field.Root>
-        <Field.Root>
-          <Field.Label>Last Name</Field.Label>
+        </Field>
+        <Field>
+          <Label>Last Name</Label>
           <Input />
-        </Field.Root>
+        </Field>
       </Stack>
     </Card.Body>
-    <Card.Footer justify="flex-end" gap="4">
-      <Button>Cancel</Button>
+    <Card.Footer justifyContent="flex-end" gap="4">
+      <Button variant="outline">Cancel</Button>
       <Button variant="solid">Sign in</Button>
     </Card.Footer>
   </Card.Root>

@@ -4,16 +4,16 @@ import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
   EMPTY_STYLES,
-  HTMLChakraProps,
-  RecipeProps,
-  UnstyledProp,
+  type HTMLChakraProps,
+  type RecipeProps,
+  type UnstyledProp,
   chakra,
   useRecipe,
 } from "../../styled-system"
 
 export interface ContainerProps
   extends HTMLChakraProps<"div">,
-    RecipeProps<"Container">,
+    RecipeProps<"container">,
     UnstyledProp {
   /**
    * If `true`, container will center its children
@@ -36,7 +36,7 @@ export interface ContainerProps
  */
 export const Container = forwardRef<HTMLDivElement, ContainerProps>(
   function Container({ unstyled, ...props }, ref) {
-    const recipe = useRecipe("Container", props.recipe)
+    const recipe = useRecipe("container", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = unstyled ? EMPTY_STYLES : recipe(variantProps)
 

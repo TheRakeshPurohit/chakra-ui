@@ -3,15 +3,15 @@
 import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
-  HTMLChakraProps,
-  RecipeProps,
+  type HTMLChakraProps,
+  type RecipeProps,
   chakra,
   useRecipe,
 } from "../../styled-system"
 
 export interface IconProps
   extends HTMLChakraProps<"svg">,
-    RecipeProps<"Icon"> {}
+    RecipeProps<"icon"> {}
 
 /**
  * The Icon component renders as an svg element to help define your own custom components.
@@ -20,7 +20,7 @@ export interface IconProps
  */
 export const Icon = forwardRef<SVGElement, IconProps>(
   function Icon(props, ref) {
-    const recipe = useRecipe("Icon", props.recipe)
+    const recipe = useRecipe("icon", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = recipe(variantProps)
 

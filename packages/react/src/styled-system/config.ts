@@ -1,16 +1,22 @@
 import { mergeWith } from "@chakra-ui/utils"
-import { CompositionStyles } from "./composition"
-import {
+import type { CompositionStyles } from "./composition"
+import type {
   GlobalStyleIdentityFn,
   KeyframeIdentityFn,
   SystemStyleIdentityFn,
 } from "./css.types"
-import { RecipeIdentityFn, SlotRecipeIdentityFn } from "./recipe.types"
-import { SemanticTokenDefinition, SystemConfig, TokenDefinition } from "./types"
+import type { RecipeIdentityFn, SlotRecipeIdentityFn } from "./recipe.types"
+import type {
+  SemanticTokenDefinition,
+  SystemConfig,
+  TokenDefinition,
+} from "./types"
 
 /* -----------------------------------------------------------------------------
  * Core creators
  * -----------------------------------------------------------------------------*/
+
+export const defineConditions = <T extends Record<string, string>>(v: T): T => v
 
 export const defineRecipe: RecipeIdentityFn = (v) => v
 
@@ -23,6 +29,8 @@ export const defineGlobalStyles: GlobalStyleIdentityFn = (v) => v
 export const defineStyle: SystemStyleIdentityFn = (v) => v
 
 export const defineTextStyles = (v: CompositionStyles["textStyles"]) => v
+
+export const defineMotionStyles = (v: CompositionStyles["motionStyles"]) => v
 
 export const defineLayerStyles = (v: CompositionStyles["layerStyles"]) => v
 

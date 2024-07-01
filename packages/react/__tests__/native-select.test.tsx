@@ -1,5 +1,6 @@
-import { render, screen, testA11y } from "@chakra-ui/test-utils"
+import { screen } from "@testing-library/react"
 import { Field, NativeSelect } from "../src"
+import { render, testA11y } from "./core"
 
 const DemoSelect = (props: NativeSelect.RootProps) => {
   return (
@@ -20,8 +21,7 @@ const DemoSelect = (props: NativeSelect.RootProps) => {
 
 describe("NativeSelect", () => {
   test("should pass a11y check", async () => {
-    const { container } = render(<DemoSelect />)
-    await testA11y(container)
+    await testA11y(<DemoSelect />)
   })
 
   test("renders a placeholder option", () => {
@@ -39,9 +39,9 @@ describe("NativeSelect", () => {
 
   test("renders in disabled state if wrapped by Field has disabled=true", () => {
     render(
-      <Field.Root disabled>
+      <Field disabled>
         <DemoSelect />,
-      </Field.Root>,
+      </Field>,
     )
     const select = screen.getByRole("combobox")
     expect(select).toBeDisabled()

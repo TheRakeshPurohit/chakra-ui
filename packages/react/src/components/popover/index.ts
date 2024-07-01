@@ -1,38 +1,41 @@
-export * as Popover from "./namespace"
-export { PopoverAnchor } from "./popover-anchor"
-
-export { PopoverArrow } from "./popover-arrow"
-export type { PopoverArrowProps } from "./popover-arrow"
-
-export { PopoverBody } from "./popover-body"
-export type { PopoverBodyProps } from "./popover-body"
-
 export {
+  PopoverRoot,
+  PopoverAnchor,
+  PopoverTrigger,
+  PopoverArrowTip,
+  PopoverBody,
+  PopoverHeader,
+  PopoverTitle,
+  PopoverDescription,
+  usePopoverStyles,
+  PopoverArrow,
+  PopoverContent,
+  PopoverFooter,
+  PopoverPositioner,
   PopoverCloseTrigger,
-  type PopoverCloseTriggerProps,
-} from "./popover-close-trigger"
+} from "./popover"
 
-export { PopoverContent } from "./popover-content"
-export type { PopoverContentProps } from "./popover-content"
-
-export { usePopoverContext, usePopoverStyles } from "./popover-context"
-
-export { PopoverFooter } from "./popover-footer"
-export type { PopoverFooterProps } from "./popover-footer"
-
-export { PopoverHeader } from "./popover-header"
-export type { PopoverHeaderProps } from "./popover-header"
-
-export { PopoverRoot } from "./popover-root"
-export type { PopoverRootProps } from "./popover-root"
-
-export { PopoverTrigger } from "./popover-trigger"
+export type {
+  PopoverRootProps,
+  PopoverAnchorProps,
+  PopoverTriggerProps,
+  PopoverArrowTipProps,
+  PopoverBodyProps,
+  PopoverHeaderProps,
+  PopoverTitleProps,
+  PopoverDescriptionProps,
+  PopoverContentProps,
+  PopoverFooterProps,
+  PopoverPositionerProps,
+  PopoverCloseTriggerProps,
+} from "./popover"
 
 export {
+  PopoverContext,
+  usePopoverContext,
   usePopover,
-  type UsePopoverProps,
-  type UsePopoverReturn,
-} from "./use-popover"
+} from "@ark-ui/react/popover"
 
-export { PopoverPositioner } from "./popover-positioner"
-export type { PopoverPositionerProps } from "./popover-positioner"
+export type { PopoverOpenChangeDetails } from "@ark-ui/react/popover"
+
+export * as Popover from "./namespace"

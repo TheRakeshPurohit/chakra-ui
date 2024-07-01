@@ -1,8 +1,7 @@
 import type { PropertiesFallback } from "csstype"
-import { Conditions } from "./generated/conditions.gen"
-import { SystemProperties } from "./generated/system.gen"
-import { AnySelector, Selectors } from "./selectors"
-import { CssVarProperties } from "./types"
+import type { Conditions } from "./generated/conditions.gen"
+import type { CssVarProperties, SystemProperties } from "./generated/system.gen"
+import type { AnySelector, Selectors } from "./selectors"
 
 type String = string & {}
 type Number = number & {}
@@ -15,7 +14,9 @@ export type CssProperty = keyof PropertiesFallback
 
 export interface CssProperties
   extends PropertiesFallback<String | Number>,
-    CssVarProperties {}
+    CssVarProperties {
+  initialLetterAlign?: String
+}
 
 export interface CssKeyframes {
   [name: string]: {

@@ -1,23 +1,29 @@
-export { DialogRoot as Root } from "./dialog-root"
-export type { DialogRootProps as RootProps } from "./dialog-root"
+export {
+  DialogBackdrop as Backdrop,
+  DialogBody as Body,
+  DialogCloseTrigger as CloseTrigger,
+  DialogContent as Content,
+  DialogFooter as Footer,
+  DialogRoot as Root,
+  DialogTitle as Title,
+  DialogTrigger as Trigger,
+  DialogHeader as Header,
+  DialogPositioner as Positioner,
+  DialogDescription as Description,
+} from "./dialog"
 
-export { DialogBody as Body } from "./dialog-body"
-export type { DialogBodyProps as BodyProps } from "./dialog-body"
+export type {
+  DialogBackdropProps as BackdropProps,
+  DialogBodyProps as BodyProps,
+  DialogCloseTriggerProps as CloseTriggerProps,
+  DialogContentProps as ContentProps,
+  DialogFooterProps as FooterProps,
+  DialogRootProps as RootProps,
+  DialogTitleProps as TitleProps,
+  DialogTriggerProps as TriggerProps,
+  DialogHeaderProps as HeaderProps,
+  DialogPositionerProps as PositionerProps,
+  DialogDescriptionProps as DescriptionProps,
+} from "./dialog"
 
-export { DialogCloseTrigger as CloseTrigger } from "./dialog-close-trigger"
-export type { DialogCloseTriggerProps as CloseTriggerProps } from "./dialog-close-trigger"
-
-export { DialogContent as Content } from "./dialog-content"
-export type { DialogContentProps as ContentProps } from "./dialog-content"
-
-export { DialogFooter as Footer } from "./dialog-footer"
-export type { DialogFooterProps as FooterProps } from "./dialog-footer"
-
-export { DialogHeader as Header } from "./dialog-header"
-export type { DialogHeaderProps as HeaderProps } from "./dialog-header"
-
-export { DialogBackdrop as Backdrop } from "./dialog-backdrop"
-export type { DialogBackdropProps as BackdropProps } from "./dialog-backdrop"
-
-export { DialogPositioner as Positioner } from "./dialog-positioner"
-export type { DialogPositionerProps as PositionerProps } from "./dialog-positioner"
+export { DialogContext as Context } from "@ark-ui/react/dialog"

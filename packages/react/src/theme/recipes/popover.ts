@@ -1,8 +1,10 @@
-import { popoverAnatomy as parts } from "../../anatomy"
+import { popoverAnatomy } from "@ark-ui/anatomy"
 import { defineSlotRecipe } from "../../styled-system"
 
+const anatomy = popoverAnatomy.extendWith("header", "body", "footer")
+
 export const popoverSlotRecipe = defineSlotRecipe({
-  slots: parts.keys,
+  slots: anatomy.keys(),
   base: {
     content: {
       position: "relative",
@@ -14,17 +16,15 @@ export const popoverSlotRecipe = defineSlotRecipe({
       shadow: "md",
       width: "xs",
       borderRadius: "var(--popover-radius)",
-      zIndex: "inherit",
-      _focusVisible: {
-        outline: 0,
+      zIndex: "popover",
+      outline: 0,
+      _open: {
+        motionStyle: "scale-fade-in",
+        animationDuration: "fast",
       },
-    },
-    arrow: {
-      "--popper-arrow-bg": "var(--popover-bg)",
-      "--popper-arrow-size": "8px",
-      "--popper-arrow-shadow-color": {
-        base: "colors.gray.200",
-        _dark: "colors.whiteAlpha.300",
+      _closed: {
+        motionStyle: "scale-fade-out",
+        animationDuration: "faster",
       },
     },
     header: {
@@ -42,9 +42,17 @@ export const popoverSlotRecipe = defineSlotRecipe({
       paddingBottom: "var(--popover-padding)",
     },
     closeTrigger: {
-      position: "absolute",
+      position: "absolute!",
       top: "1",
       insetEnd: "1",
+    },
+    arrow: {
+      "--arrow-size": "sizes.3",
+      "--arrow-bg": "var(--popover-bg)",
+    },
+    arrowTip: {
+      borderTopWidth: "1px",
+      borderInlineStartWidth: "1px",
     },
   },
   variants: {

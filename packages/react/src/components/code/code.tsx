@@ -4,16 +4,16 @@ import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
   EMPTY_STYLES,
-  HTMLChakraProps,
-  RecipeProps,
-  UnstyledProp,
+  type HTMLChakraProps,
+  type RecipeProps,
+  type UnstyledProp,
   chakra,
   useRecipe,
 } from "../../styled-system"
 
 export interface CodeProps
   extends HTMLChakraProps<"code">,
-    RecipeProps<"Code">,
+    RecipeProps<"code">,
     UnstyledProp {}
 
 /**
@@ -25,7 +25,7 @@ export const Code = forwardRef<HTMLElement, CodeProps>(function Code(
   { unstyled, ...props },
   ref,
 ) {
-  const recipe = useRecipe("Code", props.recipe)
+  const recipe = useRecipe("code", props.recipe)
   const [variantProps, localProps] = recipe.splitVariantProps(props)
   const styles = unstyled ? EMPTY_STYLES : recipe(variantProps)
 

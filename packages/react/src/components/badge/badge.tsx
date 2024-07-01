@@ -4,16 +4,16 @@ import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
   EMPTY_STYLES,
-  HTMLChakraProps,
-  RecipeProps,
-  UnstyledProp,
+  type HTMLChakraProps,
+  type RecipeProps,
+  type UnstyledProp,
   chakra,
   useRecipe,
 } from "../../styled-system"
 
 export interface BadgeProps
   extends HTMLChakraProps<"span">,
-    RecipeProps<"Badge">,
+    RecipeProps<"badge">,
     UnstyledProp {}
 
 /**
@@ -26,7 +26,7 @@ export const Badge = forwardRef<HTMLElement, BadgeProps>(function Badge(
   { unstyled, ...props },
   ref,
 ) {
-  const recipe = useRecipe("Badge", props.recipe)
+  const recipe = useRecipe("badge", props.recipe)
   const [variantProps, localProps] = recipe.splitVariantProps(props)
   const styles = unstyled ? EMPTY_STYLES : recipe(variantProps)
 

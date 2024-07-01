@@ -1,5 +1,4 @@
-import { Meta } from "@storybook/react"
-import { motion } from "framer-motion"
+import type { Meta } from "@storybook/react"
 import { chakra, useRecipe, useSlotRecipe } from "../src/styled-system"
 
 export default {
@@ -49,6 +48,38 @@ export const TextStyle = () => {
   )
 }
 
+export const LayerStyle = () => {
+  return (
+    <Box>
+      <Box
+        layerStyle="indicator.start"
+        css={{ "--indicator-offset": "4px" }}
+        colorPalette="red"
+      >
+        <Box mx="5" p="1" _hover={{ layerStyle: "ghost.subtle" }}>
+          Welcome
+        </Box>
+      </Box>
+      <Box as="button" layerStyle="fill.surface" colorPalette="pink">
+        Click me
+      </Box>
+      <Box
+        as="button"
+        layerStyle={{ base: "fill.subtle", _hover: "fill.solid" }}
+        textStyle="sm"
+        px="3"
+        py="2"
+        rounded="sm"
+        fontWeight="medium"
+        colorPalette="blue"
+        focusRing="extended"
+      >
+        Welcome
+      </Box>
+    </Box>
+  )
+}
+
 export const Basic = () => {
   return (
     <Box>
@@ -93,20 +124,6 @@ export const WithAsChild = () => {
   )
 }
 
-export const WithFramerMotion = () => {
-  return (
-    <chakra.div mt="40px" w="40px" h="40px" bg="red" ml="60px" asChild>
-      <motion.div
-        animate={{
-          scale: [1, 2, 2, 1, 1],
-          rotate: [0, 0, 270, 270, 0],
-          borderRadius: ["20%", "20%", "50%", "50%", "20%"],
-        }}
-      />
-    </chakra.div>
-  )
-}
-
 const Flex = chakra("div", {
   base: {
     display: "flex",
@@ -130,7 +147,7 @@ const Flex = chakra("div", {
 })
 
 export const WithRecipe = () => {
-  const button = useRecipe("Button")
+  const button = useRecipe("button")
   return (
     <Flex align="center" gap="40px">
       <button>Welcome</button>
@@ -142,10 +159,10 @@ export const WithRecipe = () => {
 }
 
 export const WithSlotRecipe = () => {
-  const alert = useSlotRecipe("Alert")
+  const alert = useSlotRecipe("alert")
   const styles = alert({ variant: "solid" })
   return (
-    <chakra.button className="reset" css={styles.root}>
+    <chakra.button className="reset" css={styles["root"]}>
       Welcome
     </chakra.button>
   )

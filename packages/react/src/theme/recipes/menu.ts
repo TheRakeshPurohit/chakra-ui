@@ -1,20 +1,26 @@
-import { menuAnatomy as parts } from "../../anatomy"
+import { anatomy } from "@ark-ui/anatomy/menu"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const menuSlotRecipe = defineSlotRecipe({
-  slots: parts.keys,
+  slots: [...anatomy.keys(), "itemCommand"],
   base: {
     content: {
       outline: 0,
       bg: "bg.panel",
       boxShadow: "sm",
       color: "inherit",
-      minW: "8rem",
-      padding: "1",
       zIndex: "dropdown",
       borderRadius: "md",
       overflow: "hidden",
       colorPalette: "gray",
+      _open: {
+        motionStyle: "slide-fade-in",
+        animationDuration: "fast",
+      },
+      _closed: {
+        motionStyle: "slide-fade-out",
+        animationDuration: "faster",
+      },
     },
     item: {
       textDecoration: "none",
@@ -24,21 +30,20 @@ export const menuSlotRecipe = defineSlotRecipe({
       display: "flex",
       alignItems: "center",
       textAlign: "start",
-      gap: "2",
+      position: "relative",
       flex: "0 0 auto",
       outline: 0,
-      fontSize: "sm",
-      borderRadius: "sm",
-      py: "1.5",
-      px: "2",
       _disabled: {
-        opacity: "0.5",
+        layerStyle: "disabled",
       },
     },
-    groupTitle: {
+    itemText: {
+      flex: "1",
+    },
+    itemGroupLabel: {
       px: "2",
       py: "1.5",
-      fontWeight: "semibold",
+      fontWeight: "medium",
       fontSize: "sm",
     },
     indicator: {
@@ -46,14 +51,12 @@ export const menuSlotRecipe = defineSlotRecipe({
       alignItems: "center",
       justifyContent: "center",
       flexShrink: "0",
-      opacity: "0",
-      _checked: {
-        opacity: "1",
-      },
     },
-    command: {
+    itemCommand: {
       opacity: "0.6",
-      marginLeft: "auto",
+      ms: "auto",
+      ps: "4",
+      letterSpacing: "0.1em",
     },
     separator: {
       height: "1px",
@@ -62,30 +65,58 @@ export const menuSlotRecipe = defineSlotRecipe({
       mx: "-1",
     },
   },
+
   variants: {
     variant: {
       subtle: {
         item: {
-          _focus: {
+          _highlighted: {
             bg: { base: "gray.100", _dark: "whiteAlpha.100" },
           },
         },
       },
       solid: {
         item: {
-          _focus: {
+          _highlighted: {
             bg: "colorPalette.600",
             color: "white",
           },
         },
       },
     },
+
     size: {
-      sm: {},
-      md: {},
+      sm: {
+        content: {
+          minW: "8rem",
+          padding: "1",
+        },
+        item: {
+          gap: "1",
+          fontSize: "xs",
+          borderRadius: "sm",
+          py: "1",
+          px: "1.5",
+        },
+      },
+      md: {
+        content: {
+          minW: "8rem",
+          padding: "1.5",
+        },
+        item: {
+          gap: "2",
+          fontSize: "sm",
+          borderRadius: "sm",
+          py: "1.5",
+          px: "2",
+        },
+      },
     },
   },
+
   defaultVariants: {
+    size: "md",
     variant: "subtle",
     colorPalette: "gray",
   },

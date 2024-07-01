@@ -1,4 +1,3 @@
-import { useDisclosure } from "@chakra-ui/hooks"
 import React from "react"
 import { Box, Button, Drawer } from "../src"
 
@@ -20,42 +19,10 @@ export const Basic = () => {
       <Button variant="solid" onClick={() => setOpen(!open)}>
         Open
       </Button>
-      <Drawer.Root open={open} onClose={() => setOpen(false)}>
+      <Drawer.Root open={open} onOpenChange={(e) => setOpen(e.open)}>
         <Drawer.Backdrop />
         <Drawer.Positioner>
           <Drawer.Content>
-            <Drawer.Header>Drawer Header</Drawer.Header>
-            <Drawer.Body>
-              <div>This is the drawer content</div>
-              <Button variant="solid" mt="6">
-                This is a button
-              </Button>
-            </Drawer.Body>
-          </Drawer.Content>
-        </Drawer.Positioner>
-      </Drawer.Root>
-    </>
-  )
-}
-
-export const WithCustomMotion = () => {
-  const [open, setOpen] = React.useState(false)
-  return (
-    <>
-      <Button variant="solid" onClick={() => setOpen(!open)}>
-        Open
-      </Button>
-      <Drawer.Root open={open} onClose={() => setOpen(false)}>
-        <Drawer.Backdrop />
-        <Drawer.Positioner>
-          <Drawer.Content
-            motionProps={{
-              variants: {
-                enter: { x: "0%", transition: { duration: 0.2 } },
-                exit: { x: "100%", transition: { duration: 0.1 } },
-              },
-            }}
-          >
             <Drawer.Header>Drawer Header</Drawer.Header>
             <Drawer.Body>
               <div>This is the drawer content</div>
@@ -71,17 +38,22 @@ export const WithCustomMotion = () => {
 }
 
 export const WithLongContent = () => {
-  const { open, onOpen, onClose } = useDisclosure()
+  const [open, setOpen] = React.useState(false)
 
   return (
     <>
-      <Button variant="solid" onClick={onOpen}>
+      <Button variant="solid" onClick={() => setOpen(true)}>
         Open
       </Button>
-      <Drawer.Root placement="bottom" onClose={onClose} open={open} size="md">
+      <Drawer.Root
+        placement="bottom"
+        onOpenChange={(e) => setOpen(e.open)}
+        open={open}
+        size="md"
+      >
         <Drawer.Backdrop />
         <Drawer.Positioner>
-          <Drawer.Content>
+          <Drawer.Content roundedTop="xl">
             <Drawer.Header borderBottomWidth="1px">Basic Drawer</Drawer.Header>
             <Drawer.Body>
               <input placeholder="Type here..." />

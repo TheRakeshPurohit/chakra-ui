@@ -1,5 +1,5 @@
 import {
-  Dict,
+  type Dict,
   compact,
   flatten,
   isObject,
@@ -7,18 +7,23 @@ import {
   mergeWith,
   splitProps,
 } from "@chakra-ui/utils"
+import { isCssProperty } from "@pandacss/is-valid-prop"
 import { createBreakpoints } from "./breakpoints"
 import { createConditions } from "./conditions"
 import { createCssFn } from "./css"
 import { createRecipeFn } from "./cva"
-import { isCssProperty } from "./is-valid-prop"
 import { createNormalizeFn } from "./normalize"
 import { createPreflight } from "./preflight"
 import { createSerializeFn } from "./serialize"
 import { createSlotRecipeFn } from "./sva"
 import { createTokenDictionary } from "./token-dictionary"
-import { SystemConfig, SystemContext, TokenDictionary, TokenFn } from "./types"
-import { createUtilty } from "./utility"
+import type {
+  SystemConfig,
+  SystemContext,
+  TokenDictionary,
+  TokenFn,
+} from "./types"
+import { createUtility } from "./utility"
 
 export function createSystem(config: SystemConfig): SystemContext {
   const {
@@ -43,17 +48,18 @@ export function createSystem(config: SystemConfig): SystemContext {
     breakpoints,
   })
 
-  const utility = createUtilty({
+  const utility = createUtility({
     config: utilities,
     tokens,
   })
 
   function assignComposition() {
-    const { textStyles, layerStyles } = theme
+    const { textStyles, layerStyles, motionStyles } = theme
 
     const compositions = compact({
       textStyle: textStyles,
       layerStyle: layerStyles,
+      motionStyle: motionStyles,
     })
 
     for (const [key, values] of Object.entries(compositions)) {
@@ -72,6 +78,7 @@ export function createSystem(config: SystemConfig): SystemContext {
   }
 
   assignComposition()
+  utility.addPropertyType("animationName", Object.keys(theme.keyframes ?? {}))
 
   const properties = new Set(["css", ...utility.keys(), ...conditions.keys()])
 
@@ -152,7 +159,7 @@ export function createSystem(config: SystemConfig): SystemContext {
   }
 
   return {
-    $$typeof: "SystemContext",
+    $$chakra: true,
     _config: config,
     breakpoints,
     tokens,
@@ -183,4 +190,8 @@ function getTokenMap(tokens: TokenDictionary) {
   })
 
   return map
+}
+
+export const isValidSystem = (mod: unknown): mod is SystemContext => {
+  return isObject(mod) && !!Reflect.get(mod, "$$chakra")
 }

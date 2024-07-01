@@ -4,16 +4,16 @@ import { cx } from "@chakra-ui/utils"
 import { forwardRef } from "react"
 import {
   EMPTY_STYLES,
-  HTMLChakraProps,
-  RecipeProps,
-  UnstyledProp,
+  type HTMLChakraProps,
+  type RecipeProps,
+  type UnstyledProp,
   chakra,
   useRecipe,
 } from "../../styled-system"
 
 export interface SkeletonProps
   extends HTMLChakraProps<"div">,
-    RecipeProps<"Skeleton">,
+    RecipeProps<"skeleton">,
     UnstyledProp {}
 
 /**
@@ -23,7 +23,7 @@ export interface SkeletonProps
  */
 export const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>(
   function Skeleton({ unstyled, ...props }, ref) {
-    const recipe = useRecipe("Skeleton", props.recipe)
+    const recipe = useRecipe("skeleton", props.recipe)
     const [variantProps, localProps] = recipe.splitVariantProps(props)
     const styles = unstyled ? EMPTY_STYLES : recipe(variantProps)
 

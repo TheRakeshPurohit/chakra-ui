@@ -1,23 +1,28 @@
-export { SliderRoot as Root } from "./slider-root"
-export type { SliderRootProps as RootProps } from "./slider-root"
+export {
+  SliderRoot as Root,
+  SliderMarker as Marker,
+  SliderThumb as Thumb,
+  SliderValueText as ValueText,
+  SliderRange as Range,
+  SliderControl as Control,
+  SliderLabel as Label,
+  SliderTrack as Track,
+  SliderMarkerGroup as MarkerGroup,
+} from "./slider"
 
-export { SliderMark as Mark } from "./slider-mark"
-export type { SliderMarkProps as MarkProps } from "./slider-mark"
+export type {
+  SliderRootProps as RootProps,
+  SliderMarkerProps as MarkerProps,
+  SliderThumbProps as ThumbProps,
+  SliderValueTextProps as ValueTextProps,
+  SliderRangeProps as RangeProps,
+  SliderControlProps as ControlProps,
+  SliderLabelProps as LabelProps,
+  SliderTrackProps as TrackProps,
+  SliderMarkerGroupProps as MarkerGroupProps,
+} from "./slider"
 
-export { SliderThumb as Thumb } from "./slider-thumb"
-export type { SliderThumbProps as ThumbProps } from "./slider-thumb"
-
-export { SliderTrack as Track } from "./slider-track"
-export type { SliderTrackProps as TrackProps } from "./slider-track"
-
-export { SliderFilledTrack as FilledTrack } from "./slider-filled-track"
-export type { SliderFilledTrackProps as FilledTrackProps } from "./slider-filled-track"
-
-export { SliderControl as Control } from "./slider-control"
-export type { SliderControlProps as ControlProps } from "./slider-control"
-
-export { SliderValueText as ValueText } from "./slider-value-text"
-export type { SliderValueTextProps as ValueTextProps } from "./slider-value-text"
-
-export { SliderLabel as Label } from "./slider-label"
-export type { SliderLabelProps as LabelProps } from "./slider-label"
+export {
+  SliderContext as Context,
+  SliderHiddenInput as HiddenInput,
+} from "@ark-ui/react/slider"

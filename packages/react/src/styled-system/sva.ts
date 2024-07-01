@@ -1,5 +1,5 @@
-import { Dict, omit, splitProps } from "@chakra-ui/utils"
-import { RecipeCreatorFn, SlotRecipeCreatorFn } from "./recipe.types"
+import { type Dict, omit, splitProps } from "@chakra-ui/utils"
+import type { RecipeCreatorFn, SlotRecipeCreatorFn } from "./recipe.types"
 
 interface Options {
   cva: RecipeCreatorFn
@@ -79,10 +79,22 @@ export function createSlotRecipeFn(options: Options): SlotRecipeCreatorFn {
       Object.entries(variants).map(([key, value]) => [key, Object.keys(value)]),
     )
 
+    let classNameMap: Record<string, string> = {}
+
+    if (config.className) {
+      classNameMap = Object.fromEntries(
+        config.slots.map((slot: string) => [
+          slot,
+          `chakra-${config.className}__${slot}`,
+        ]),
+      )
+    }
+
     return Object.assign(svaFn, {
       variantMap,
       variantKeys,
       splitVariantProps,
+      classNameMap,
     })
   }
 }

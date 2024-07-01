@@ -1,6 +1,6 @@
 "use client"
 
-import { HTMLChakraProps, chakra } from "../../styled-system"
+import { type HTMLChakraProps, chakra } from "../../styled-system"
 
 export interface InputElementProps extends HTMLChakraProps<"div"> {}
 
@@ -10,7 +10,7 @@ export const InputElement = chakra("div", {
     alignItems: "center",
     justifyContent: "center",
     position: "absolute",
-    zIndex: 1,
+    zIndex: 2,
     color: "fg.subtle",
     height: "full",
     fontSize: "sm",

@@ -1,13 +1,16 @@
-import { accordionAnatomy as parts } from "../../anatomy"
+import { anatomy } from "@ark-ui/anatomy/accordion"
 import { defineSlotRecipe } from "../../styled-system"
 
 export const accordionSlotRecipe = defineSlotRecipe({
-  slots: parts.keys,
+  slots: [...anatomy.keys(), "itemBody"],
   base: {
+    root: {
+      width: "100%",
+    },
     item: {
       overflowAnchor: "none",
     },
-    trigger: {
+    itemTrigger: {
       display: "flex",
       alignItems: "center",
       width: "100%",
@@ -23,14 +26,25 @@ export const accordionSlotRecipe = defineSlotRecipe({
         cursor: "not-allowed",
       },
     },
-    content: {
+    itemBody: {
       paddingBottom: "calc(var(--accordion-padding-y) * 2)",
-      borderRadius: "var(--accordion-radius)",
     },
-    indicator: {
+    itemContent: {
+      overflow: "hidden",
+      borderRadius: "var(--accordion-radius)",
+      _open: {
+        animationName: "expand-height, fade-in",
+        animationDuration: "normal",
+      },
+      _closed: {
+        animationName: "collapse-height, fade-out",
+        animationDuration: "normal",
+      },
+    },
+    itemIndicator: {
       transition: "transform 0.2s",
       transformOrigin: "center",
-      _expanded: {
+      _open: {
         transform: "rotate(180deg)",
       },
       "& svg": {
@@ -39,6 +53,7 @@ export const accordionSlotRecipe = defineSlotRecipe({
       },
     },
   },
+
   variants: {
     variant: {
       outline: {
@@ -47,36 +62,37 @@ export const accordionSlotRecipe = defineSlotRecipe({
         },
       },
       elevated: {
-        trigger: {
+        itemTrigger: {
           paddingX: "var(--accordion-padding-x)",
         },
-        content: {
+        itemContent: {
           paddingX: "var(--accordion-padding-x)",
         },
         item: {
           borderRadius: "var(--accordion-radius)",
-          _expanded: {
+          _open: {
             bg: "bg.panel",
             boxShadow: "xs",
           },
         },
       },
       contained: {
-        trigger: {
+        itemTrigger: {
           paddingX: "var(--accordion-padding-x)",
         },
-        content: {
+        itemContent: {
           paddingX: "var(--accordion-padding-x)",
         },
         item: {
           borderRadius: "var(--accordion-radius)",
-          _expanded: {
+          _open: {
             bg: { base: "colorPalette.100", _dark: "colorPalette.400/20" },
           },
         },
       },
       plain: {},
     },
+
     size: {
       sm: {
         item: {
@@ -85,7 +101,7 @@ export const accordionSlotRecipe = defineSlotRecipe({
           "--accordion-radius": "radii.sm",
           fontSize: "sm",
         },
-        trigger: {
+        itemTrigger: {
           paddingY: "var(--accordion-padding-y)",
         },
       },
@@ -96,7 +112,7 @@ export const accordionSlotRecipe = defineSlotRecipe({
           "--accordion-radius": "radii.md",
           fontSize: "sm",
         },
-        trigger: {
+        itemTrigger: {
           paddingY: "var(--accordion-padding-y)",
         },
       },
@@ -107,12 +123,13 @@ export const accordionSlotRecipe = defineSlotRecipe({
           "--accordion-radius": "radii.md",
           fontSize: "md",
         },
-        trigger: {
+        itemTrigger: {
           paddingY: "var(--accordion-padding-y)",
         },
       },
     },
   },
+
   defaultVariants: {
     size: "md",
     variant: "outline",

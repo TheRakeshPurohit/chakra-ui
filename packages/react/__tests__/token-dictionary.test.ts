@@ -1,5 +1,5 @@
 import { createTokenDictionary } from "../src/styled-system/token-dictionary"
-import { TokenDictionary } from "../src/styled-system/types"
+import type { TokenDictionary } from "../src/styled-system/types"
 
 const res = (dict: TokenDictionary) => {
   return dict.allTokens.map(({ name, value }) => ({ name, value }))
@@ -33,6 +33,29 @@ describe("token dictionary", () => {
         {
           "name": "colors.colorPalette.300",
           "value": "colors.colorPalette.300",
+        },
+      ]
+    `)
+  })
+
+  test("semantic tokens / simple", () => {
+    const dict = createTokenDictionary({
+      semanticTokens: {
+        colors: {
+          test: { value: "#fff" },
+        },
+      },
+    })
+
+    expect(res(dict)).toMatchInlineSnapshot(`
+      [
+        {
+          "name": "colors.test",
+          "value": "#fff",
+        },
+        {
+          "name": "colors.colorPalette",
+          "value": "colors.colorPalette",
         },
       ]
     `)
@@ -134,6 +157,44 @@ describe("token dictionary", () => {
             "red",
           ],
           "value": "#red",
+        },
+        {
+          "extensions": {
+            "category": "colors",
+            "colorPalette": {
+              "keys": [
+                [
+                  "",
+                ],
+              ],
+              "roots": [
+                [
+                  "error",
+                ],
+              ],
+              "value": "error",
+            },
+            "condition": "base",
+            "conditions": {
+              "base": "{colors.red}",
+            },
+            "cssVar": {
+              "ref": "var(--colors-error)",
+              "var": "--colors-error",
+            },
+            "originalPath": [
+              "colors",
+              "error",
+            ],
+            "prop": "error",
+          },
+          "name": "colors.error",
+          "originalValue": "{colors.red}",
+          "path": [
+            "colors",
+            "error",
+          ],
+          "value": "var(--colors-red)",
         },
         {
           "extensions": {

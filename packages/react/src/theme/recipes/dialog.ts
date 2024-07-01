@@ -1,22 +1,32 @@
-import { modalAnatomy as parts } from "../../anatomy"
+import { anatomy } from "@ark-ui/anatomy/dialog"
 import { defineSlotRecipe } from "../../styled-system"
 
+const dialogAnatomy = anatomy.extendWith("header", "body", "footer", "backdrop")
+
 export const dialogSlotRecipe = defineSlotRecipe({
-  slots: parts.keys,
+  slots: dialogAnatomy.keys(),
   base: {
-    overlay: {
-      bg: "blackAlpha.800",
+    backdrop: {
+      bg: "blackAlpha.500",
       pos: "fixed",
       left: 0,
       top: 0,
       w: "100vw",
-      h: "100vh",
+      h: "100dvh",
       zIndex: "modal",
+      _open: {
+        animationName: "fade-in",
+        animationDuration: "fast",
+      },
+      _closed: {
+        animationName: "fade-out",
+        animationDuration: "faster",
+      },
     },
     positioner: {
       display: "flex",
       width: "100vw",
-      height: "100vh",
+      height: "100dvh",
       position: "fixed",
       left: 0,
       top: 0,
@@ -30,70 +40,108 @@ export const dialogSlotRecipe = defineSlotRecipe({
       position: "relative",
       width: "100%",
       outline: 0,
-      borderRadius: "md",
+      borderRadius: "lg",
+      fontSize: "sm",
       zIndex: "modal",
-      bg: "bg",
+      bg: "bg.panel",
       shadow: "lg",
+      _open: {
+        animationDuration: "normal",
+      },
+      _closed: {
+        animationDuration: "faster",
+      },
     },
     header: {
       flex: 0,
-      px: "6",
-      py: "4",
-      fontSize: "xl",
-      fontWeight: "semibold",
+      padding: "6",
     },
     closeTrigger: {
-      position: "absolute",
+      position: "absolute!",
       top: "2",
-      insetEnd: "3",
+      insetEnd: "2",
     },
     body: {
-      px: "6",
-      py: "2",
       flex: "1",
       color: "fg.muted",
+      paddingX: "6",
     },
     footer: {
       display: "flex",
       alignItems: "center",
       justifyContent: "flex-end",
       gap: "3",
-      px: "6",
-      py: "4",
+      padding: "6",
     },
   },
+
   variants: {
     centered: {
       true: {
-        positioner: { alignItems: "center" },
-        content: { my: "auto", mx: "auto" },
+        positioner: {
+          alignItems: "center",
+        },
+        content: {
+          my: "auto",
+          mx: "auto",
+        },
       },
       false: {
-        positioner: { alignItems: "flex-start" },
-        content: { my: "16", mx: "auto" },
+        positioner: {
+          alignItems: "flex-start",
+        },
+        content: {
+          my: "16",
+          mx: "auto",
+        },
       },
     },
+
     scrollBehavior: {
       inside: {
-        positioner: { overflow: "hidden" },
-        content: { maxH: "calc(100% - 7.5rem)" },
-        body: { overflow: "auto" },
+        positioner: {
+          overflow: "hidden",
+        },
+        content: {
+          maxH: "calc(100% - 7.5rem)",
+        },
+        body: {
+          overflow: "auto",
+        },
       },
       outside: {
-        positioner: { overflow: "auto" },
+        positioner: {
+          overflow: "auto",
+        },
       },
     },
+
     size: {
-      xs: { content: { maxW: "xs" } },
-      sm: { content: { maxW: "sm" } },
-      md: { content: { maxW: "md" } },
-      lg: { content: { maxW: "lg" } },
-      xl: { content: { maxW: "xl" } },
-      "2xl": { content: { maxW: "2xl" } },
-      "3xl": { content: { maxW: "3xl" } },
-      "4xl": { content: { maxW: "4xl" } },
-      "5xl": { content: { maxW: "5xl" } },
-      "6xl": { content: { maxW: "6xl" } },
+      xs: {
+        content: {
+          maxW: "sm",
+        },
+      },
+      sm: {
+        content: {
+          maxW: "md",
+        },
+      },
+      md: {
+        content: {
+          maxW: "lg",
+        },
+      },
+      lg: {
+        content: {
+          maxW: "2xl",
+        },
+      },
+      xl: {
+        content: {
+          maxW: "4xl",
+        },
+      },
       full: {
         content: {
           maxW: "100vw",
@@ -103,10 +151,46 @@ export const dialogSlotRecipe = defineSlotRecipe({
         },
       },
     },
+
+    motionPreset: {
+      scale: {
+        content: {
+          _open: { animationName: "scale-in, fade-in" },
+          _closed: { animationName: "scale-out, fade-out" },
+        },
+      },
+      "slide-in-bottom": {
+        content: {
+          _open: { animationName: "slide-from-bottom, fade-in" },
+          _closed: { animationName: "slide-to-bottom, fade-out" },
+        },
+      },
+      "slide-in-top": {
+        content: {
+          _open: { animationName: "slide-from-top, fade-in" },
+          _closed: { animationName: "slide-to-top, fade-out" },
+        },
+      },
+      "slide-in-left": {
+        content: {
+          _open: { animationName: "slide-from-left, fade-in" },
+          _closed: { animationName: "slide-to-left, fade-out" },
+        },
+      },
+      "slide-in-right": {
+        content: {
+          _open: { animationName: "slide-from-right, fade-in" },
+          _closed: { animationName: "slide-to-right, fade-out" },
+        },
+      },
+      none: {},
+    },
   },
+
   defaultVariants: {
     size: "md",
     scrollBehavior: "outside",
     centered: false,
+    motionPreset: "scale",
   },
 })
